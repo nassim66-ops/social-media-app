@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import multer from "multer";
-// import helmet from "helmet";
+import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -37,10 +37,10 @@ const app = express();
 app.use(express.json());
 
 // Apply security measures with the 'helmet' middleware.
-// app.use(helmet());
+app.use(helmet());
 
 // Set Cross-Origin Resource Policy for added security.
-// app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 // Set up logging of HTTP requests using 'morgan'.
 app.use(morgan("common"));
