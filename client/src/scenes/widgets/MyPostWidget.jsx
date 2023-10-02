@@ -24,6 +24,7 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
+import { serverLink } from "utils";
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("picturePath", image.name);
     }
 
-    const response = await fetch(`http://localhost:3001/posts`, {
+    const response = await fetch(`${serverLink}/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -157,10 +158,10 @@ const MyPostWidget = ({ picturePath }) => {
         <Button
           disabled={!post}
           onClick={handlePost}
-          sx={{
-            color: palette.background.alt,
+          style={{
             backgroundColor: palette.primary.main,
             borderRadius: "3rem",
+            color: palette.mode === "dark" ? "black" : palette.background.alt,
           }}
         >
           POST
